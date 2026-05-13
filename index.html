@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Концепция ДИТ — Sminex</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #f0ebe1;
+            color: #1a1a1a;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 48px 32px 80px;
+        }
+
+        /* ── Header ── */
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .page-header .eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #8a8478;
+            margin-bottom: 16px;
+        }
+        .page-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        .page-header .subtitle {
+            font-size: 16px;
+            color: #8a8478;
+            font-weight: 400;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #ddd6c9;
+            margin: 32px 0;
+        }
+
+        /* ── Section labels ── */
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: #8a8478;
+            margin-bottom: 16px;
+        }
+
+        /* ── Company Goals Card ── */
+        .goals-card {
+            background: #fff;
+            border: 1px solid #e0d9ce;
+            border-radius: 12px;
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 12px;
+        }
+        .goals-icon {
+            width: 48px;
+            height: 48px;
+            background: #2d4a2d;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .goals-icon svg { width: 24px; height: 24px; }
+        .goals-content h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        .goals-content p {
+            font-size: 13px;
+            color: #8a8478;
+        }
+
+        /* ── Flow arrow ── */
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 0;
+            color: #b0a898;
+        }
+        .flow-arrow .line {
+            width: 1px;
+            height: 28px;
+            background: #ccc5b8;
+        }
+        .flow-arrow .label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #a09888;
+        }
+        .flow-down {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .arrow-tip {
+            width: 0; height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid #ccc5b8;
+        }
+
+        /* ── Main 3-col layout ── */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr 280px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        /* ── Left: Clients ── */
+        .clients-col {}
+        .client-card {
+            background: #fff;
+            border: 1px solid #e0d9ce;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: border-color 0.2s;
+        }
+        .client-card:hover { border-color: #2d4a2d; }
+        .client-info h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+        .client-info p {
+            font-size: 11px;
+            color: #a09888;
+        }
+        .client-badge {
+            background: #eae5db;
+            color: #6b6358;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        /* ── Horizontal flow indicators ── */
+        .h-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 6px 0;
+        }
+        .h-flow-line {
+            width: 32px;
+            height: 1px;
+            background: #ccc5b8;
+        }
+        .h-flow-arrow-r {
+            width: 0; height: 0;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-left: 5px solid #2d4a2d;
+        }
+        .h-flow-arrow-l {
+            width: 0; height: 0;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-right: 5px solid #2d4a2d;
+        }
+        .h-flow-label {
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #2d4a2d;
+        }
+
+        /* ── Center: DIT block ── */
+        .dit-col {
+            position: relative;
+        }
+        .dit-main-card {
+            background: #fff;
+            border: 2px solid #2d4a2d;
+            border-radius: 14px;
+            padding: 28px 24px 24px;
+        }
+        .dit-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .dit-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .dit-tag {
+            display: inline-block;
+            background: #2d4a2d;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* KPI Cascade */
+        .kpi-section-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #a09888;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .kpi-level {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .kpi-node {
+            background: #faf7f2;
+            border: 1px solid #e0d9ce;
+            border-radius: 8px;
+            padding: 10px 14px;
+            text-align: center;
+            transition: border-color 0.2s;
+            flex: 1;
+            max-width: 220px;
+        }
+        .kpi-node:hover { border-color: #2d4a2d; }
+        .kpi-node .role {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+        .kpi-node .desc {
+            font-size: 10px;
+            color: #a09888;
+        }
+
+        .kpi-node.top {
+            border-left: 3px solid #2d4a2d;
+            background: #fff;
+        }
+        .kpi-node.mid {
+            border-left: 3px solid #8a7a50;
+        }
+        .kpi-node.low {
+            border-left: 3px solid #b0a898;
+        }
+
+        .kpi-arrows {
+            display: flex;
+            justify-content: center;
+            padding: 6px 0;
+        }
+        .kpi-arrow-down {
+            width: 1px;
+            height: 16px;
+            background: #ccc5b8;
+            position: relative;
+        }
+        .kpi-arrow-down::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -3px;
+            width: 0; height: 0;
+            border-left: 3.5px solid transparent;
+            border-right: 3.5px solid transparent;
+            border-top: 5px solid #ccc5b8;
+        }
+
+        /* Activities row */
+        .activities-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .activity-card {
+            flex: 1;
+            background: #faf7f2;
+            border: 1px solid #e0d9ce;
+            border-radius: 8px;
+            padding: 12px 14px;
+            text-align: center;
+        }
+        .activity-card .act-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+        .activity-card .act-desc {
+            font-size: 10px;
+            color: #a09888;
+        }
+        .activity-card.support { border-top: 3px solid #2d4a2d; }
+        .activity-card.dev { border-top: 3px solid #8a7a50; }
+
+        /* ── Right: Budget ── */
+        .budget-col {}
+
+        .budget-card {
+            background: #fff;
+            border: 1px solid #e0d9ce;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 10px;
+        }
+        .budget-card.base { border-left: 4px solid #2d4a2d; }
+        .budget-card.alloc { border-left: 4px solid #8a7a50; }
+
+        .budget-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        .budget-card p {
+            font-size: 12px;
+            color: #8a8478;
+            line-height: 1.5;
+        }
+        .budget-weight {
+            display: inline-block;
+            background: #2d4a2d;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        .budget-weight.alt {
+            background: #8a7a50;
+        }
+
+        /* Process steps */
+        .process-card {
+            background: #fff;
+            border: 1px solid #e0d9ce;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .process-card .process-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #a09888;
+            margin-bottom: 14px;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0ebe1;
+        }
+        .step:last-child { border-bottom: none; }
+        .step-num {
+            width: 24px;
+            height: 24px;
+            background: #faf7f2;
+            border: 1px solid #e0d9ce;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #2d4a2d;
+            flex-shrink: 0;
+        }
+        .step-text {
+            font-size: 12px;
+            color: #5a5348;
+            line-height: 1.4;
+            padding-top: 2px;
+        }
+
+        /* ── Side flow labels ── */
+        .side-flows {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 8px;
+            align-self: center;
+        }
+        .side-flow-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ── Bottom legend ── */
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid #ddd6c9;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #8a8478;
+        }
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+        }
+        .legend-dot.green { background: #2d4a2d; }
+        .legend-dot.gold { background: #8a7a50; }
+        .legend-dot.gray { background: #b0a898; }
+
+        /* ── Grid with flow columns ── */
+        .full-grid {
+            display: grid;
+            grid-template-columns: 260px 36px 1fr 36px 260px;
+            gap: 0;
+            align-items: start;
+        }
+        .flow-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 120px;
+            gap: 20px;
+        }
+        .flow-col .flow-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+        .flow-col .flow-horiz-line {
+            width: 24px;
+            height: 1.5px;
+            background: #ccc5b8;
+        }
+        .flow-col .flow-tag {
+            font-size: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #2d4a2d;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Header -->
+        <div class="page-header">
+            <div class="eyebrow">Sminex &middot; ИТ Департамент</div>
+            <h1>Концепция Департамента<br>информационных технологий</h1>
+            <div class="subtitle">Сервисная модель, финансирование и система KPI</div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Section: Company Goals -->
+        <div class="section-label">Стратегические цели</div>
+
+        <div class="goals-card">
+            <div class="goals-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+            </div>
+            <div class="goals-content">
+                <h2>Стратегические цели Sminex</h2>
+                <p>Верхнеуровневые KPI и бизнес-приоритеты компании, которые определяют работу всех подразделений</p>
+            </div>
+        </div>
+
+        <!-- Arrow down -->
+        <div class="flow-down" style="padding: 8px 0;">
+            <div class="line" style="width:1px; height:24px; background:#ccc5b8;"></div>
+            <div class="arrow-tip"></div>
+            <div style="font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:#a09888; margin-top:4px;">Трассировка KPI</div>
+        </div>
+
+        <!-- Main layout -->
+        <div class="full-grid">
+
+            <!-- Left: Client Departments -->
+            <div class="clients-col">
+                <div class="section-label">Департаменты-заказчики</div>
+
+                <div class="client-card">
+                    <div class="client-info">
+                        <h3>Коммерческий</h3>
+                        <p>Продажи, CRM, маркетинг</p>
+                    </div>
+                    <span class="client-badge">Заказчик</span>
+                </div>
+                <div class="client-card">
+                    <div class="client-info">
+                        <h3>Строительство</h3>
+                        <p>BIM, управление проектами</p>
+                    </div>
+                    <span class="client-badge">Заказчик</span>
+                </div>
+                <div class="client-card">
+                    <div class="client-info">
+                        <h3>Эксплуатация</h3>
+                        <p>УК, сервис, обращения</p>
+                    </div>
+                    <span class="client-badge">Заказчик</span>
+                </div>
+                <div class="client-card">
+                    <div class="client-info">
+                        <h3>Финансы</h3>
+                        <p>Учёт, отчётность, бюджеты</p>
+                    </div>
+                    <span class="client-badge">Заказчик</span>
+                </div>
+                <div class="client-card">
+                    <div class="client-info">
+                        <h3>HR</h3>
+                        <p>Кадры, обучение</p>
+                    </div>
+                    <span class="client-badge">Заказчик</span>
+                </div>
+            </div>
+
+            <!-- Left flow column -->
+            <div class="flow-col">
+                <div class="flow-indicator">
+                    <svg width="24" height="12" viewBox="0 0 24 12"><path d="M24,6 L16,1 L16,4 L0,4 L0,8 L16,8 L16,11 Z" fill="#ccc5b8"/></svg>
+                    <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:#2d4a2d;">Заказ</span>
+                </div>
+                <div class="flow-indicator">
+                    <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0,6 L8,1 L8,4 L24,4 L24,8 L8,8 L8,11 Z" fill="#ccc5b8"/></svg>
+                    <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:#2d4a2d;">Продукт</span>
+                </div>
+            </div>
+
+            <!-- Center: DIT -->
+            <div class="dit-col">
+                <div class="dit-main-card">
+                    <div class="dit-header">
+                        <h2>Департамент IT</h2>
+                        <span class="dit-tag">Сервисное подразделение</span>
+                    </div>
+
+                    <div class="kpi-section-label">Каскад KPI</div>
+
+                    <!-- Level 0 -->
+                    <div class="kpi-level">
+                        <div class="kpi-node top" style="max-width: 320px;">
+                            <div class="role">Руководитель ДИТ</div>
+                            <div class="desc">KPI = стратегические цели → IT-стратегия</div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-arrows"><div class="kpi-arrow-down"></div></div>
+
+                    <!-- Level 1 -->
+                    <div class="kpi-level">
+                        <div class="kpi-node mid">
+                            <div class="role">Руководители кластеров</div>
+                            <div class="desc">Продуктовые направления</div>
+                        </div>
+                        <div class="kpi-node mid">
+                            <div class="role">Руководители ЦЭ</div>
+                            <div class="desc">Центры экспертиз</div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-arrows"><div class="kpi-arrow-down"></div></div>
+
+                    <!-- Level 2 -->
+                    <div class="kpi-level">
+                        <div class="kpi-node low">
+                            <div class="role">Продакт-менеджеры</div>
+                            <div class="desc">KPI продуктов</div>
+                        </div>
+                        <div class="kpi-node low">
+                            <div class="role">Сотрудники ЦЭ</div>
+                            <div class="desc">KPI экспертиз</div>
+                        </div>
+                    </div>
+
+                    <!-- Activities -->
+                    <div class="activities-row">
+                        <div class="activity-card support">
+                            <div class="act-title">Поддержка</div>
+                            <div class="act-desc">Сопровождение продуктов и систем</div>
+                        </div>
+                        <div class="activity-card dev">
+                            <div class="act-title">Разработка</div>
+                            <div class="act-desc">Новые продукты и доработки</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right flow column -->
+            <div class="flow-col">
+                <div class="flow-indicator">
+                    <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0,6 L8,1 L8,4 L24,4 L24,8 L8,8 L8,11 Z" fill="#ccc5b8"/></svg>
+                    <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:#8a7a50;">Бюджет</span>
+                </div>
+            </div>
+
+            <!-- Right: Budget Model -->
+            <div class="budget-col">
+                <div class="section-label">Финансовая модель</div>
+
+                <div class="budget-card base">
+                    <span class="budget-weight">Базовый</span>
+                    <h3>Бюджет ДИТ</h3>
+                    <p>Поддержание и сопровождение всех продуктов и ключевых систем</p>
+                </div>
+
+                <div class="budget-card alloc">
+                    <span class="budget-weight alt">Аллокация</span>
+                    <h3>Бюджет заказчиков</h3>
+                    <p>Средства департаментов на разработку и доработку. Планируется в начале фин. периода</p>
+                </div>
+
+                <div class="process-card">
+                    <div class="process-title">Процесс аллокации</div>
+                    <div class="step">
+                        <span class="step-num">1</span>
+                        <span class="step-text">Заказчик планирует бюджет на доработки</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">2</span>
+                        <span class="step-text">Бюджет аллоцируется в ДИТ</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">3</span>
+                        <span class="step-text">ДИТ выполняет разработку</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">4</span>
+                        <span class="step-text">Расходы списываются из бюджета заказчика</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot green"></div>
+                Цели компании → KPI каскад
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot green" style="opacity: 0.5;"></div>
+                Заказ / поставка продуктов
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot gold"></div>
+                Аллоцированный бюджет
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot gray"></div>
+                Базовый бюджет ДИТ
+            </div>
+        </div>
+    </div>
+</body>
+</html>
