@@ -48,6 +48,42 @@
             font-weight: 400;
         }
 
+        /* ── Nav buttons ── */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 24px;
+        }
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1.5px solid #d0c9bc;
+            background: #fff;
+            color: #5a5348;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.2px;
+        }
+        .nav-btn:hover {
+            border-color: #2d4a2d;
+            color: #2d4a2d;
+            background: #f5f2eb;
+        }
+        .nav-btn svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            opacity: 0.6;
+        }
+        .nav-btn:hover svg { opacity: 1; }
+
         hr.divider {
             border: none;
             border-top: 1px solid #ddd6c9;
@@ -604,6 +640,24 @@
             <div class="eyebrow">Sminex &middot; ИТ Департамент</div>
             <h1>Концепция Департамента<br>информационных технологий</h1>
             <div class="subtitle">Сервисная модель, финансирование и система KPI</div>
+
+            <div class="nav-buttons">
+                <a class="nav-btn" href="#">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="2,4 8,1 14,4 14,12 8,15 2,12 2,4"/>
+                        <polyline points="2,4 8,7 14,4"/>
+                        <line x1="8" y1="7" x2="8" y2="15"/>
+                    </svg>
+                    Система KPI
+                </a>
+                <a class="nav-btn" href="#">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="8" r="6"/>
+                        <path d="M8 5v3.5l2 1.5"/>
+                    </svg>
+                    Система премирования
+                </a>
+            </div>
         </div>
 
         <hr class="divider">
