@@ -491,29 +491,26 @@
         /* Activities tied to budget */
         .activities-budget-row {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             margin-top: 0;
-            max-width: 600px;
+            max-width: 860px;
             margin-left: auto;
             margin-right: auto;
         }
         .ab-card {
             flex: 1;
-            border-radius: 8px;
-            padding: 14px;
-            text-align: center;
+            border-radius: 12px;
+            padding: 24px;
             position: relative;
         }
         .ab-card.support {
-            background: rgba(45, 74, 45, 0.06);
+            background: rgba(45, 74, 45, 0.05);
             border: 1.5px solid #2d4a2d;
         }
         .ab-card.dev {
-            background: rgba(138, 122, 80, 0.06);
+            background: rgba(138, 122, 80, 0.05);
             border: 1.5px solid #8a7a50;
         }
-        .ab-card .ab-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
-        .ab-card .ab-desc { font-size: 10px; color: #8a8478; margin-bottom: 8px; }
         .ab-card .ab-budget-tag {
             display: inline-block;
             font-size: 9px;
@@ -522,9 +519,36 @@
             letter-spacing: 1px;
             padding: 3px 10px;
             border-radius: 4px;
+            margin-bottom: 12px;
         }
         .ab-card.support .ab-budget-tag { background: #2d4a2d; color: #fff; }
         .ab-card.dev .ab-budget-tag { background: #8a7a50; color: #fff; }
+        .ab-card .ab-title { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+        .ab-card .ab-desc { font-size: 13px; color: #8a8478; margin-bottom: 16px; line-height: 1.5; }
+        .ab-card .ab-theses {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .ab-card .ab-theses li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 12px;
+            color: #5a5348;
+            line-height: 1.45;
+        }
+        .ab-card .ab-theses li::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+        .ab-card.support .ab-theses li::before { background: #2d4a2d; }
+        .ab-card.dev .ab-theses li::before { background: #8a7a50; }
 
         /* ── Right: Budget summary ── */
         .budget-summary-col {}
@@ -877,14 +901,26 @@
         <div class="section-label" style="text-align:center;">Функции департамента</div>
         <div class="activities-budget-row">
             <div class="ab-card support">
-                <div class="ab-title">Поддержка</div>
-                <div class="ab-desc">Сопровождение продуктов и систем</div>
                 <span class="ab-budget-tag">Базовый бюджет</span>
+                <div class="ab-title">Поддержка</div>
+                <div class="ab-desc">Фиксированный бюджет ДИТ на сопровождение всех действующих систем и инфраструктуры</div>
+                <ul class="ab-theses">
+                    <li>Предсказуемые расходы — легко планировать год от года</li>
+                    <li>Гарантирует бесперебойную работу систем вне зависимости от активности бизнеса</li>
+                    <li>Снижает операционные риски: нет поддержки — нет бизнеса</li>
+                    <li>Формирует «базовую линию» — ДИТ всегда в рабочем состоянии</li>
+                </ul>
             </div>
             <div class="ab-card dev">
-                <div class="ab-title">Разработка</div>
-                <div class="ab-desc">Новые продукты и доработки</div>
                 <span class="ab-budget-tag">Бюджет заказчиков</span>
+                <div class="ab-title">Разработка</div>
+                <div class="ab-desc">Гибкий механизм финансирования новых продуктов и доработок через бюджеты департаментов</div>
+                <ul class="ab-theses">
+                    <li>Каждый департамент сам управляет приоритетами своего цифрового развития</li>
+                    <li>Прозрачность затрат: расходы на ИТ видны в бюджете конкретного заказчика</li>
+                    <li>Масштабирование по потребности — объём разработки растёт вместе с бизнесом</li>
+                    <li>Осознанное планирование: заказчик тратит собственный бюджет и обосновывает запросы</li>
+                </ul>
             </div>
         </div>
 
