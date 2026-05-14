@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Концепция ДИТ — Sminex</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -17,7 +17,7 @@
         }
 
         .page {
-            max-width: 1100px;
+            max-width: 1140px;
             margin: 0 auto;
             padding: 48px 32px 80px;
         }
@@ -48,7 +48,7 @@
             font-weight: 400;
         }
 
-        .divider {
+        hr.divider {
             border: none;
             border-top: 1px solid #ddd6c9;
             margin: 32px 0;
@@ -73,7 +73,6 @@
             display: flex;
             align-items: center;
             gap: 24px;
-            margin-bottom: 12px;
         }
         .goals-icon {
             width: 48px;
@@ -97,56 +96,261 @@
             color: #8a8478;
         }
 
-        /* ── Flow arrow ── */
-        .flow-arrow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 0;
-            color: #b0a898;
-        }
-        .flow-arrow .line {
-            width: 1px;
-            height: 28px;
-            background: #ccc5b8;
-        }
-        .flow-arrow .label {
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #a09888;
-        }
+        /* ── Vertical flow arrow ── */
         .flow-down {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 4px;
+            padding: 10px 0;
         }
+        .v-line { width: 1px; height: 24px; background: #ccc5b8; }
         .arrow-tip {
             width: 0; height: 0;
             border-left: 5px solid transparent;
             border-right: 5px solid transparent;
             border-top: 6px solid #ccc5b8;
         }
+        .flow-label-sm {
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #a09888;
+            margin-top: 4px;
+        }
 
-        /* ── Main 3-col layout ── */
+        /* ══════════════════════════════════════
+           BUDGET FORMULA BAR  (top-level visual)
+           ══════════════════════════════════════ */
+        .budget-formula-section {
+            margin-bottom: 32px;
+        }
+        .formula-bar {
+            background: #fff;
+            border: 1px solid #e0d9ce;
+            border-radius: 12px;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .formula-pill {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid #e0d9ce;
+            background: #faf7f2;
+            color: #1a1a1a;
+        }
+        .formula-pill.green {
+            background: #2d4a2d;
+            color: #fff;
+            border-color: #2d4a2d;
+        }
+        .formula-pill.gold {
+            background: #8a7a50;
+            color: #fff;
+            border-color: #8a7a50;
+        }
+        .formula-pill.result {
+            background: #1a1a1a;
+            color: #fff;
+            border-color: #1a1a1a;
+            font-weight: 700;
+        }
+        .formula-op {
+            font-size: 18px;
+            font-weight: 300;
+            color: #a09888;
+        }
+
+        /* ══════════════════════════════════════
+           BUDGET DETAIL CARDS (2-column)
+           ══════════════════════════════════════ */
+        .budget-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .budget-detail-card {
+            background: #fff;
+            border: 1px solid #e0d9ce;
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .budget-detail-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+        }
+        .budget-detail-card.base::before { background: #2d4a2d; }
+        .budget-detail-card.alloc::before { background: #8a7a50; }
+
+        .bdc-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+        .bdc-badge.green { background: #2d4a2d; color: #fff; }
+        .bdc-badge.gold { background: #8a7a50; color: #fff; }
+
+        .budget-detail-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .budget-detail-card p {
+            font-size: 13px;
+            color: #8a8478;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .budget-detail-card .funds-for {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .budget-detail-card .funds-list {
+            list-style: none;
+        }
+        .budget-detail-card .funds-list li {
+            font-size: 12px;
+            color: #5a5348;
+            padding: 4px 0;
+            border-bottom: 1px solid #f0ebe1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .budget-detail-card .funds-list li:last-child { border-bottom: none; }
+        .funds-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .funds-dot.green { background: #2d4a2d; }
+        .funds-dot.gold { background: #8a7a50; }
+
+        /* ══════════════════════════════════════
+           ALLOCATION PROCESS (timeline)
+           ══════════════════════════════════════ */
+        .alloc-process {
+            background: #fff;
+            border: 1px solid #e0d9ce;
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin-bottom: 40px;
+        }
+        .alloc-process .process-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .alloc-process .process-header .section-label { margin-bottom: 0; }
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 40px;
+            right: 40px;
+            height: 2px;
+            background: #e0d9ce;
+        }
+        .tl-step {
+            text-align: center;
+            position: relative;
+            padding: 0 12px;
+        }
+        .tl-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #faf7f2;
+            border: 2px solid #e0d9ce;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: #2d4a2d;
+            margin: 0 auto 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .tl-step.active .tl-dot {
+            background: #2d4a2d;
+            border-color: #2d4a2d;
+            color: #fff;
+        }
+        .tl-step.gold-active .tl-dot {
+            background: #8a7a50;
+            border-color: #8a7a50;
+            color: #fff;
+        }
+        .tl-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        .tl-desc {
+            font-size: 11px;
+            color: #a09888;
+            line-height: 1.4;
+        }
+        .tl-who {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+        .tl-who.client { background: #eae5db; color: #6b6358; }
+        .tl-who.dit { background: #e6ede6; color: #2d4a2d; }
+
+        /* ══════════════════════════════════════
+           MAIN 3-COLUMN LAYOUT
+           ══════════════════════════════════════ */
         .main-grid {
             display: grid;
-            grid-template-columns: 280px 1fr 280px;
-            gap: 24px;
+            grid-template-columns: 240px 1fr 240px;
+            gap: 20px;
             align-items: start;
+            position: relative;
         }
 
         /* ── Left: Clients ── */
-        .clients-col {}
         .client-card {
             background: #fff;
             border: 1px solid #e0d9ce;
             border-radius: 10px;
-            padding: 16px 18px;
-            margin-bottom: 10px;
+            padding: 14px 16px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -175,43 +379,7 @@
             white-space: nowrap;
         }
 
-        /* ── Horizontal flow indicators ── */
-        .h-flow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 6px 0;
-        }
-        .h-flow-line {
-            width: 32px;
-            height: 1px;
-            background: #ccc5b8;
-        }
-        .h-flow-arrow-r {
-            width: 0; height: 0;
-            border-top: 4px solid transparent;
-            border-bottom: 4px solid transparent;
-            border-left: 5px solid #2d4a2d;
-        }
-        .h-flow-arrow-l {
-            width: 0; height: 0;
-            border-top: 4px solid transparent;
-            border-bottom: 4px solid transparent;
-            border-right: 5px solid #2d4a2d;
-        }
-        .h-flow-label {
-            font-size: 9px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #2d4a2d;
-        }
-
-        /* ── Center: DIT block ── */
-        .dit-col {
-            position: relative;
-        }
+        /* ── Center: DIT ── */
         .dit-main-card {
             background: #fff;
             border: 2px solid #2d4a2d;
@@ -240,7 +408,6 @@
             letter-spacing: 1.5px;
         }
 
-        /* KPI Cascade */
         .kpi-section-label {
             font-size: 10px;
             font-weight: 600;
@@ -250,7 +417,6 @@
             text-align: center;
             margin-bottom: 14px;
         }
-
         .kpi-level {
             display: flex;
             justify-content: center;
@@ -268,174 +434,107 @@
             max-width: 220px;
         }
         .kpi-node:hover { border-color: #2d4a2d; }
-        .kpi-node .role {
-            font-size: 12px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 2px;
-        }
-        .kpi-node .desc {
-            font-size: 10px;
-            color: #a09888;
-        }
+        .kpi-node .role { font-size: 12px; font-weight: 600; color: #1a1a1a; margin-bottom: 2px; }
+        .kpi-node .desc { font-size: 10px; color: #a09888; }
+        .kpi-node.top { border-left: 3px solid #2d4a2d; background: #fff; }
+        .kpi-node.mid { border-left: 3px solid #8a7a50; }
+        .kpi-node.low { border-left: 3px solid #b0a898; }
 
-        .kpi-node.top {
-            border-left: 3px solid #2d4a2d;
-            background: #fff;
-        }
-        .kpi-node.mid {
-            border-left: 3px solid #8a7a50;
-        }
-        .kpi-node.low {
-            border-left: 3px solid #b0a898;
-        }
-
-        .kpi-arrows {
-            display: flex;
-            justify-content: center;
-            padding: 6px 0;
-        }
+        .kpi-arrows { display: flex; justify-content: center; padding: 6px 0; }
         .kpi-arrow-down {
-            width: 1px;
-            height: 16px;
-            background: #ccc5b8;
-            position: relative;
+            width: 1px; height: 16px; background: #ccc5b8; position: relative;
         }
         .kpi-arrow-down::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: -3px;
+            content: ''; position: absolute; bottom: 0; left: -3px;
             width: 0; height: 0;
             border-left: 3.5px solid transparent;
             border-right: 3.5px solid transparent;
             border-top: 5px solid #ccc5b8;
         }
 
-        /* Activities row */
-        .activities-row {
+        /* Activities tied to budget */
+        .activities-budget-row {
             display: flex;
             gap: 10px;
-            margin-top: 16px;
+            margin-top: 18px;
         }
-        .activity-card {
+        .ab-card {
             flex: 1;
-            background: #faf7f2;
-            border: 1px solid #e0d9ce;
             border-radius: 8px;
-            padding: 12px 14px;
+            padding: 14px;
             text-align: center;
+            position: relative;
         }
-        .activity-card .act-title {
-            font-size: 12px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 2px;
+        .ab-card.support {
+            background: rgba(45, 74, 45, 0.06);
+            border: 1.5px solid #2d4a2d;
         }
-        .activity-card .act-desc {
-            font-size: 10px;
-            color: #a09888;
+        .ab-card.dev {
+            background: rgba(138, 122, 80, 0.06);
+            border: 1.5px solid #8a7a50;
         }
-        .activity-card.support { border-top: 3px solid #2d4a2d; }
-        .activity-card.dev { border-top: 3px solid #8a7a50; }
+        .ab-card .ab-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+        .ab-card .ab-desc { font-size: 10px; color: #8a8478; margin-bottom: 8px; }
+        .ab-card .ab-budget-tag {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
+        .ab-card.support .ab-budget-tag { background: #2d4a2d; color: #fff; }
+        .ab-card.dev .ab-budget-tag { background: #8a7a50; color: #fff; }
 
-        /* ── Right: Budget ── */
-        .budget-col {}
-
-        .budget-card {
+        /* ── Right: Budget summary ── */
+        .budget-summary-col {}
+        .budget-sum-card {
             background: #fff;
             border: 1px solid #e0d9ce;
             border-radius: 10px;
             padding: 18px 20px;
             margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
         }
-        .budget-card.base { border-left: 4px solid #2d4a2d; }
-        .budget-card.alloc { border-left: 4px solid #8a7a50; }
-
-        .budget-card h3 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 4px;
+        .budget-sum-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
         }
-        .budget-card p {
-            font-size: 12px;
-            color: #8a8478;
-            line-height: 1.5;
-        }
-        .budget-weight {
+        .budget-sum-card.base::before { background: #2d4a2d; }
+        .budget-sum-card.alloc::before { background: #8a7a50; }
+        .budget-sum-card h3 { font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+        .budget-sum-card p { font-size: 12px; color: #8a8478; line-height: 1.5; }
+        .budget-sum-badge {
             display: inline-block;
-            background: #2d4a2d;
-            color: #fff;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 600;
             padding: 2px 8px;
             border-radius: 4px;
             margin-bottom: 8px;
-        }
-        .budget-weight.alt {
-            background: #8a7a50;
-        }
-
-        /* Process steps */
-        .process-card {
-            background: #fff;
-            border: 1px solid #e0d9ce;
-            border-radius: 10px;
-            padding: 20px;
-        }
-        .process-card .process-title {
-            font-size: 11px;
-            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #a09888;
-            margin-bottom: 14px;
+            letter-spacing: 0.5px;
         }
-        .step {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 8px 0;
-            border-bottom: 1px solid #f0ebe1;
+        .budget-sum-badge.green { background: #2d4a2d; color: #fff; }
+        .budget-sum-badge.gold { background: #8a7a50; color: #fff; }
+
+        /* ── SVG flow arrows (overlay) ── */
+        .main-grid-wrap {
+            position: relative;
         }
-        .step:last-child { border-bottom: none; }
-        .step-num {
-            width: 24px;
-            height: 24px;
-            background: #faf7f2;
-            border: 1px solid #e0d9ce;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 700;
-            color: #2d4a2d;
-            flex-shrink: 0;
-        }
-        .step-text {
-            font-size: 12px;
-            color: #5a5348;
-            line-height: 1.4;
-            padding-top: 2px;
+        .flow-arrows-svg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        /* ── Side flow labels ── */
-        .side-flows {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 8px;
-            align-self: center;
-        }
-        .side-flow-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* ── Bottom legend ── */
+        /* ── Legend ── */
         .legend {
             display: flex;
             justify-content: center;
@@ -452,49 +551,41 @@
             color: #8a8478;
         }
         .legend-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 3px;
+            width: 10px; height: 10px; border-radius: 3px;
         }
         .legend-dot.green { background: #2d4a2d; }
         .legend-dot.gold { background: #8a7a50; }
-        .legend-dot.gray { background: #b0a898; }
 
-        /* ── Grid with flow columns ── */
-        .full-grid {
-            display: grid;
-            grid-template-columns: 260px 36px 1fr 36px 260px;
-            gap: 0;
-            align-items: start;
-        }
-        .flow-col {
+        /* ── Flow connectors between cols ── */
+        .col-flow {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding-top: 120px;
-            gap: 20px;
+            gap: 14px;
+            align-self: center;
         }
-        .flow-col .flow-indicator {
+        .col-flow-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 3px;
+            gap: 2px;
         }
-        .flow-col .flow-horiz-line {
-            width: 24px;
-            height: 1.5px;
-            background: #ccc5b8;
-        }
-        .flow-col .flow-tag {
+        .col-flow-item .cfl {
             font-size: 8px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #2d4a2d;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg);
+            letter-spacing: 1px;
+        }
+        .col-flow-item .cfl.green { color: #2d4a2d; }
+        .col-flow-item .cfl.gold { color: #8a7a50; }
+
+        /* 5-col grid with flow columns */
+        .full-grid {
+            display: grid;
+            grid-template-columns: 230px 40px 1fr 40px 230px;
+            gap: 0;
+            align-items: start;
         }
     </style>
 </head>
@@ -509,9 +600,8 @@
 
         <hr class="divider">
 
-        <!-- Section: Company Goals -->
+        <!-- ═══ SECTION: Company Goals ═══ -->
         <div class="section-label">Стратегические цели</div>
-
         <div class="goals-card">
             <div class="goals-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -524,20 +614,93 @@
             </div>
         </div>
 
-        <!-- Arrow down -->
-        <div class="flow-down" style="padding: 8px 0;">
-            <div class="line" style="width:1px; height:24px; background:#ccc5b8;"></div>
+        <div class="flow-down">
+            <div class="v-line"></div>
             <div class="arrow-tip"></div>
-            <div style="font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:#a09888; margin-top:4px;">Трассировка KPI</div>
+            <div class="flow-label-sm">Трассировка KPI</div>
         </div>
 
-        <!-- Main layout -->
+        <!-- ═══ SECTION: Budget Formula ═══ -->
+        <div class="budget-formula-section">
+            <div class="section-label">Формула бюджета ДИТ</div>
+            <div class="formula-bar">
+                <div class="formula-pill green">Базовый бюджет ДИТ</div>
+                <span class="formula-op">+</span>
+                <div class="formula-pill gold">Аллокация от заказчиков</div>
+                <span class="formula-op">=</span>
+                <div class="formula-pill result">Общий бюджет ДИТ</div>
+            </div>
+        </div>
+
+        <!-- ═══ SECTION: Budget Details (2 cards) ═══ -->
+        <div class="budget-details">
+            <div class="budget-detail-card base">
+                <span class="bdc-badge green">Базовый бюджет</span>
+                <h3>Бюджет на поддержку</h3>
+                <p>Собственный бюджет ДИТ на сопровождение и поддержание всех существующих продуктов и систем</p>
+                <div class="funds-for">Финансирует:</div>
+                <ul class="funds-list">
+                    <li><span class="funds-dot green"></span>Инфраструктура и серверы</li>
+                    <li><span class="funds-dot green"></span>Лицензии и подписки</li>
+                    <li><span class="funds-dot green"></span>Техническая поддержка пользователей</li>
+                    <li><span class="funds-dot green"></span>Сопровождение текущих систем</li>
+                </ul>
+            </div>
+            <div class="budget-detail-card alloc">
+                <span class="bdc-badge gold">Аллоцированный бюджет</span>
+                <h3>Бюджет на разработку</h3>
+                <p>Средства департаментов-заказчиков на разработку и доработку продуктов. Планируется заказчиками в начале финансового периода</p>
+                <div class="funds-for">Финансирует:</div>
+                <ul class="funds-list">
+                    <li><span class="funds-dot gold"></span>Новые продукты и системы</li>
+                    <li><span class="funds-dot gold"></span>Доработки существующих продуктов</li>
+                    <li><span class="funds-dot gold"></span>Интеграции между системами</li>
+                    <li><span class="funds-dot gold"></span>Автоматизация бизнес-процессов</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ═══ SECTION: Allocation Process ═══ -->
+        <div class="alloc-process">
+            <div class="process-header">
+                <div class="section-label">Процесс аллокации бюджета</div>
+            </div>
+            <div class="timeline">
+                <div class="tl-step gold-active">
+                    <div class="tl-dot">1</div>
+                    <div class="tl-title">Планирование</div>
+                    <div class="tl-desc">Заказчик планирует бюджет на доработки в начале фин. периода</div>
+                    <span class="tl-who client">Заказчик</span>
+                </div>
+                <div class="tl-step gold-active">
+                    <div class="tl-dot">2</div>
+                    <div class="tl-title">Аллокация</div>
+                    <div class="tl-desc">Бюджет аллоцируется из департамента заказчика в ДИТ</div>
+                    <span class="tl-who client">Заказчик → ДИТ</span>
+                </div>
+                <div class="tl-step active">
+                    <div class="tl-dot">3</div>
+                    <div class="tl-title">Разработка</div>
+                    <div class="tl-desc">ДИТ выполняет разработку и доработку продуктов</div>
+                    <span class="tl-who dit">ДИТ</span>
+                </div>
+                <div class="tl-step active">
+                    <div class="tl-dot">4</div>
+                    <div class="tl-title">Списание</div>
+                    <div class="tl-desc">Расходы списываются из бюджета департамента-заказчика</div>
+                    <span class="tl-who client">Бюджет заказчика</span>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- ═══ SECTION: Org structure ═══ -->
         <div class="full-grid">
 
             <!-- Left: Client Departments -->
-            <div class="clients-col">
-                <div class="section-label">Департаменты-заказчики</div>
-
+            <div>
+                <div class="section-label">Заказчики</div>
                 <div class="client-card">
                     <div class="client-info">
                         <h3>Коммерческий</h3>
@@ -576,19 +739,23 @@
             </div>
 
             <!-- Left flow column -->
-            <div class="flow-col">
-                <div class="flow-indicator">
-                    <svg width="24" height="12" viewBox="0 0 24 12"><path d="M24,6 L16,1 L16,4 L0,4 L0,8 L16,8 L16,11 Z" fill="#ccc5b8"/></svg>
-                    <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:#2d4a2d;">Заказ</span>
+            <div class="col-flow">
+                <div class="col-flow-item">
+                    <svg width="28" height="14" viewBox="0 0 28 14"><path d="M28,7 L19,1 L19,5 L0,5 L0,9 L19,9 L19,13 Z" fill="#8a7a50"/></svg>
+                    <span class="cfl gold">Бюджет</span>
                 </div>
-                <div class="flow-indicator">
-                    <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0,6 L8,1 L8,4 L24,4 L24,8 L8,8 L8,11 Z" fill="#ccc5b8"/></svg>
-                    <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:#2d4a2d;">Продукт</span>
+                <div class="col-flow-item">
+                    <svg width="28" height="14" viewBox="0 0 28 14"><path d="M28,7 L19,1 L19,5 L0,5 L0,9 L19,9 L19,13 Z" fill="#ccc5b8"/></svg>
+                    <span class="cfl green">Заказ</span>
+                </div>
+                <div class="col-flow-item">
+                    <svg width="28" height="14" viewBox="0 0 28 14"><path d="M0,7 L9,1 L9,5 L28,5 L28,9 L9,9 L9,13 Z" fill="#2d4a2d"/></svg>
+                    <span class="cfl green">Продукт</span>
                 </div>
             </div>
 
             <!-- Center: DIT -->
-            <div class="dit-col">
+            <div>
                 <div class="dit-main-card">
                     <div class="dit-header">
                         <h2>Департамент IT</h2>
@@ -597,17 +764,13 @@
 
                     <div class="kpi-section-label">Каскад KPI</div>
 
-                    <!-- Level 0 -->
                     <div class="kpi-level">
                         <div class="kpi-node top" style="max-width: 320px;">
                             <div class="role">Руководитель ДИТ</div>
                             <div class="desc">KPI = стратегические цели → IT-стратегия</div>
                         </div>
                     </div>
-
                     <div class="kpi-arrows"><div class="kpi-arrow-down"></div></div>
-
-                    <!-- Level 1 -->
                     <div class="kpi-level">
                         <div class="kpi-node mid">
                             <div class="role">Руководители кластеров</div>
@@ -618,10 +781,7 @@
                             <div class="desc">Центры экспертиз</div>
                         </div>
                     </div>
-
                     <div class="kpi-arrows"><div class="kpi-arrow-down"></div></div>
-
-                    <!-- Level 2 -->
                     <div class="kpi-level">
                         <div class="kpi-node low">
                             <div class="role">Продакт-менеджеры</div>
@@ -633,62 +793,44 @@
                         </div>
                     </div>
 
-                    <!-- Activities -->
-                    <div class="activities-row">
-                        <div class="activity-card support">
-                            <div class="act-title">Поддержка</div>
-                            <div class="act-desc">Сопровождение продуктов и систем</div>
+                    <!-- Activities explicitly linked to budget types -->
+                    <div class="activities-budget-row">
+                        <div class="ab-card support">
+                            <div class="ab-title">Поддержка</div>
+                            <div class="ab-desc">Сопровождение продуктов и систем</div>
+                            <span class="ab-budget-tag">Базовый бюджет</span>
                         </div>
-                        <div class="activity-card dev">
-                            <div class="act-title">Разработка</div>
-                            <div class="act-desc">Новые продукты и доработки</div>
+                        <div class="ab-card dev">
+                            <div class="ab-title">Разработка</div>
+                            <div class="ab-desc">Новые продукты и доработки</div>
+                            <span class="ab-budget-tag">Бюджет заказчиков</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Right flow column -->
-            <div class="flow-col">
-                <div class="flow-indicator">
-                    <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0,6 L8,1 L8,4 L24,4 L24,8 L8,8 L8,11 Z" fill="#ccc5b8"/></svg>
-                    <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:#8a7a50;">Бюджет</span>
+            <div class="col-flow">
+                <div class="col-flow-item">
+                    <svg width="28" height="14" viewBox="0 0 28 14"><path d="M0,7 L9,1 L9,5 L28,5 L28,9 L9,9 L9,13 Z" fill="#2d4a2d"/></svg>
+                    <span class="cfl green">Базовый</span>
                 </div>
             </div>
 
-            <!-- Right: Budget Model -->
-            <div class="budget-col">
-                <div class="section-label">Финансовая модель</div>
+            <!-- Right: Budget summary -->
+            <div class="budget-summary-col">
+                <div class="section-label">Бюджет ДИТ</div>
 
-                <div class="budget-card base">
-                    <span class="budget-weight">Базовый</span>
-                    <h3>Бюджет ДИТ</h3>
-                    <p>Поддержание и сопровождение всех продуктов и ключевых систем</p>
+                <div class="budget-sum-card base">
+                    <span class="budget-sum-badge green">Базовый</span>
+                    <h3>Собственный бюджет</h3>
+                    <p>На поддержку всех продуктов и ключевых систем компании</p>
                 </div>
 
-                <div class="budget-card alloc">
-                    <span class="budget-weight alt">Аллокация</span>
+                <div class="budget-sum-card alloc">
+                    <span class="budget-sum-badge gold">Аллокация</span>
                     <h3>Бюджет заказчиков</h3>
-                    <p>Средства департаментов на разработку и доработку. Планируется в начале фин. периода</p>
-                </div>
-
-                <div class="process-card">
-                    <div class="process-title">Процесс аллокации</div>
-                    <div class="step">
-                        <span class="step-num">1</span>
-                        <span class="step-text">Заказчик планирует бюджет на доработки</span>
-                    </div>
-                    <div class="step">
-                        <span class="step-num">2</span>
-                        <span class="step-text">Бюджет аллоцируется в ДИТ</span>
-                    </div>
-                    <div class="step">
-                        <span class="step-num">3</span>
-                        <span class="step-text">ДИТ выполняет разработку</span>
-                    </div>
-                    <div class="step">
-                        <span class="step-num">4</span>
-                        <span class="step-text">Расходы списываются из бюджета заказчика</span>
-                    </div>
+                    <p>Средства на разработку, списываются из бюджета заказчика</p>
                 </div>
             </div>
         </div>
@@ -697,19 +839,11 @@
         <div class="legend">
             <div class="legend-item">
                 <div class="legend-dot green"></div>
-                Цели компании → KPI каскад
-            </div>
-            <div class="legend-item">
-                <div class="legend-dot green" style="opacity: 0.5;"></div>
-                Заказ / поставка продуктов
+                Базовый бюджет / поддержка
             </div>
             <div class="legend-item">
                 <div class="legend-dot gold"></div>
-                Аллоцированный бюджет
-            </div>
-            <div class="legend-item">
-                <div class="legend-dot gray"></div>
-                Базовый бюджет ДИТ
+                Аллоцированный бюджет / разработка
             </div>
         </div>
     </div>
