@@ -585,9 +585,12 @@
         /* 5-col grid with flow columns */
         .full-grid {
             display: grid;
-            grid-template-columns: 230px 56px 1fr 56px 230px;
+            grid-template-columns: 230px 72px 1fr 72px 230px;
             gap: 0;
             align-items: start;
+        }
+        .full-grid > * {
+            overflow: visible;
         }
     </style>
 </head>
