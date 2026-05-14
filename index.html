@@ -455,8 +455,11 @@
         /* Activities tied to budget */
         .activities-budget-row {
             display: flex;
-            gap: 10px;
-            margin-top: 18px;
+            gap: 16px;
+            margin-top: 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .ab-card {
             flex: 1;
@@ -771,7 +774,7 @@
 
                     <div class="kpi-level">
                         <div class="kpi-node top" style="max-width: 320px;">
-                            <div class="role">Руководитель ДИТ</div>
+                            <div class="role">Директор ИТ</div>
                             <div class="desc">KPI = стратегические цели → IT-стратегия</div>
                         </div>
                     </div>
@@ -789,7 +792,7 @@
                     <div class="kpi-arrows"><div class="kpi-arrow-down"></div></div>
                     <div class="kpi-level">
                         <div class="kpi-node low">
-                            <div class="role">Продакт-менеджеры</div>
+                            <div class="role">Владельцы продуктов</div>
                             <div class="desc">KPI продуктов</div>
                         </div>
                         <div class="kpi-node low">
@@ -798,19 +801,6 @@
                         </div>
                     </div>
 
-                    <!-- Activities explicitly linked to budget types -->
-                    <div class="activities-budget-row">
-                        <div class="ab-card support">
-                            <div class="ab-title">Поддержка</div>
-                            <div class="ab-desc">Сопровождение продуктов и систем</div>
-                            <span class="ab-budget-tag">Базовый бюджет</span>
-                        </div>
-                        <div class="ab-card dev">
-                            <div class="ab-title">Разработка</div>
-                            <div class="ab-desc">Новые продукты и доработки</div>
-                            <span class="ab-budget-tag">Бюджет заказчиков</span>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -839,6 +829,28 @@
                 </div>
             </div>
         </div>
+
+        <!-- ═══ SECTION: Activities ═══ -->
+        <div class="flow-down">
+            <div class="v-line"></div>
+            <div class="arrow-tip"></div>
+        </div>
+
+        <div class="section-label" style="text-align:center;">Функции департамента</div>
+        <div class="activities-budget-row">
+            <div class="ab-card support">
+                <div class="ab-title">Поддержка</div>
+                <div class="ab-desc">Сопровождение продуктов и систем</div>
+                <span class="ab-budget-tag">Базовый бюджет</span>
+            </div>
+            <div class="ab-card dev">
+                <div class="ab-title">Разработка</div>
+                <div class="ab-desc">Новые продукты и доработки</div>
+                <span class="ab-budget-tag">Бюджет заказчиков</span>
+            </div>
+        </div>
+
+        <hr class="divider" style="margin-top: 32px;">
 
         <!-- Legend -->
         <div class="legend">
